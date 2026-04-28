@@ -131,5 +131,4 @@ export async function initPrintReadyPdfEditor(cesdk: CreativeEditorSDK) {
       include: ['ly.img.templates.premium.*']
     })
   );
-
 }
