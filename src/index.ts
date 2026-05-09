@@ -1,8 +1,8 @@
 /**
  * CE.SDK Print-Ready PDF Editor Starterkit - Main Entry Point
  *
- * A design editor optimized for creating print-ready PDF exports with
- * bleed, crop marks, and CMYK color support.
+ * A professional design editor with PDF/X-3 export compliance, CMYK color profiles,
+ * and bleed margin support for print-ready production.
  *
  * @see https://img.ly/docs/cesdk/js/getting-started/
  */
@@ -17,17 +17,16 @@ import { resolveAssetPath } from './imgly/resolveAssetPath';
 // ============================================================================
 
 const config = {
-  userId: 'starterkit-print-ready-pdf-editor-user'
+  userId: 'starterkit-print-ready-pdf-editor-user',
 
-  // Local assets
-  // baseURL: `/assets/`,
+  // IMG.LY CDN (for quick testing only, NOT recommended for production)
 
-  // License key (required for production)
-  // license: 'YOUR_LICENSE_KEY',
+  // Local assets for development
+
 };
 
 // ============================================================================
-// Initialize Print-Ready PDF Editor
+// Initialize Design Editor
 // ============================================================================
 
 CreativeEditorSDK.create('#cesdk_container', config)
