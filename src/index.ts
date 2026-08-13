@@ -41,7 +41,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // ============================================================================
 
     // Load the example scene for print-ready PDF export
-    await cesdk.loadFromURL(resolveAssetPath('/assets/example-1.scene'));
+    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
   })
   .catch((error) => {
     // eslint-disable-next-line no-console
