@@ -1,16 +1,17 @@
 /**
  * CE.SDK Print-Ready PDF Editor Starterkit - Main Entry Point
  *
- * A professional design editor with PDF/X-3 export compliance, CMYK color profiles,
+ * A professional design editor with PDF/X-4 and PDF/X-3 export compliance, CMYK color profiles,
  * and bleed margin support for print-ready production.
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { initPrintReadyPdfEditor } from './imgly';
 import { resolveAssetPath } from './imgly/resolveAssetPath';
+
 
 // ============================================================================
 // Configuration
@@ -41,7 +42,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // ============================================================================
 
     // Load the example scene for print-ready PDF export
-    await cesdk.loadFromURL(resolveAssetPath('/assets/example-1.scene'));
+    await cesdk.load(resolveAssetPath('/assets/example-1.scene'));
   })
   .catch((error) => {
     // eslint-disable-next-line no-console
