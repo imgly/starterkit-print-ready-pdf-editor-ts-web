@@ -413,12 +413,22 @@ export const exportPrintReadyPDF = async (
     const { convertToPDFX } =
       await import('@imgly/plugin-print-ready-pdfs-web');
 
+    const { createConversionRuntime } =
+      await import('@imgly/pdf-conversion-utils');
+    const runtime = createConversionRuntime({
+      assetBaseURL: new URL(
+        `${import.meta.env.BASE_URL}pdf-conversion/`,
+        globalThis.location.href
+      )
+    });
+
     // Convert to the selected print-ready PDF/X standard (defaults to PDF/X-4)
     return await convertToPDFX(pdfBlob, {
+      runtime,
       outputProfile: colorProfile,
       outputStandard,
       title: 'Print-Ready Export'
-    });
+    }).finally(() => runtime.dispose());
   } finally {
     hiddenPages.forEach((id: number) => {
       engine.block.setVisible(id, true);
