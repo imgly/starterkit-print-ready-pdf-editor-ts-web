@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { conversionAssets } from './print-conversion-assets';
+import { conversionAssets } from './print-conversion-assets.mjs';
 
 // Serve the shared conversion worker, JavaScript runtime and WASM together.
 export default defineConfig({
