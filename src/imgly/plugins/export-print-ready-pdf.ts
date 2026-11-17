@@ -18,11 +18,11 @@ type ColorProfile = 'fogra39' | 'gracol' | 'srgb';
 
 const COLOR_PROFILE_SELECT_VALUES = [
   { id: 'fogra39', label: 'ISO Coated v2 (ECI) (CMYK)' },
-  { id: 'gracol', label: 'GRACoL 2006 (CMYK)' },
+  { id: 'gracol', label: 'GRACoL (CMYK)' },
   { id: 'srgb', label: 'sRGB (RGB)' }
 ];
 
-const COLOR_PROFILE_DEFAULT_VALUE = COLOR_PROFILE_SELECT_VALUES[0];
+const COLOR_PROFILE_DEFAULT_VALUE = COLOR_PROFILE_SELECT_VALUES[0]!;
 // #endregion
 
 // #region PDF/X Standard
@@ -35,14 +35,16 @@ const PDFX_STANDARD_SELECT_VALUES = [
 
 // PDF/X-4 is the default: it preserves live transparency so vector text on
 // transparent pages stays selectable. PDF/X-3 (PDF 1.4) flattens transparency.
-const PDFX_STANDARD_DEFAULT_VALUE = PDFX_STANDARD_SELECT_VALUES[0];
+const PDFX_STANDARD_DEFAULT_VALUE = PDFX_STANDARD_SELECT_VALUES[0]!;
 // #endregion
 
 // #region Page Amount Types
-export enum PageAmountType {
-  ALL = 'all',
-  CUSTOM = 'custom'
-}
+export const PageAmountType = {
+  ALL: 'all',
+  CUSTOM: 'custom'
+} as const;
+export type PageAmountType =
+  (typeof PageAmountType)[keyof typeof PageAmountType];
 // #endregion
 
 type SelectValue = { id: string; label: string | string[] };
@@ -330,7 +332,7 @@ const writeMargins = (
   { enabled, margins }: PageMargins
 ): void => {
   MARGIN_PROPERTIES.forEach((property, index) => {
-    engine.block.setFloat(pageId, property, margins[index]);
+    engine.block.setFloat(pageId, property, margins[index]!);
   });
   engine.block.setBool(pageId, 'page/marginEnabled', enabled);
 };
@@ -467,7 +469,7 @@ export const getPagesFromRange = (
   pageRanges.forEach((range: string) => {
     if (range.includes('-')) {
       const [start, end] = range.split('-').map(Number);
-      for (let i = start; i <= end; i++) {
+      for (let i = start!; i <= end!; i++) {
         pageIndexes.push(i);
       }
     } else {
